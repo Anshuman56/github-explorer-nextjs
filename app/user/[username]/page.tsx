@@ -1,4 +1,5 @@
 import { GitHubRepo, GitHubUser } from "@/app/type";
+import { notFound } from "next/navigation";
 
 type Props = { params: Promise<{ username: string }> };
 export default async function UserPage({ params }: Props) {
@@ -10,6 +11,10 @@ export default async function UserPage({ params }: Props) {
   );
   const user: GitHubUser = await userRes.json();
   const repos: GitHubRepo[] = await reposRes.json();
+  if (!userRes.ok) {
+    if (userRes.status === 404) notFound();
+  }
+
   console.log(user);
   console.log(repos);
   return (
@@ -20,13 +25,14 @@ export default async function UserPage({ params }: Props) {
         <img src={user.avatar_url} alt="" />
         <p>{user.followers}</p>
       </div>
-      {repos.map((item) => (
-        <div className="border" key={item.id}>
-          <h2>{item.name}</h2>
-          <p>{item.description}</p>
-          <p>{item.language}</p>
-        </div>
-      ))}
+      {Array.isArray(repos) &&
+        repos.map((item) => (
+          <div className="border" key={item.id}>
+            <h2>{item.name}</h2>
+            <p>{item.description}</p>
+            <p>{item.language}</p>
+          </div>
+        ))}
     </div>
   );
 }
