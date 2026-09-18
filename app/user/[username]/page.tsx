@@ -1,5 +1,6 @@
 import { GitHubRepo, GitHubUser } from "@/app/type";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 type Props = { params: Promise<{ username: string }> };
 export default async function UserPage({ params }: Props) {
@@ -22,7 +23,13 @@ export default async function UserPage({ params }: Props) {
       <div>
         <h1>{user.name}</h1>
         <h2>{user.bio}</h2>
-        <img src={user.avatar_url} alt="" />
+        <Image
+          src={user.avatar_url}
+          alt="GitHub User"
+          width={200}
+          height={200}
+          loading="eager"
+        />
         <p>{user.followers}</p>
       </div>
       {Array.isArray(repos) &&
@@ -35,4 +42,12 @@ export default async function UserPage({ params }: Props) {
         ))}
     </div>
   );
+}
+
+export async function generateMetadata({ params }: Props) {
+  const { username } = await params;
+  return {
+    title: `${username} on GitHub Explorer`,
+    description: `View ${username}'s profile and repositories`,
+  };
 }
