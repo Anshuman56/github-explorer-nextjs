@@ -19,22 +19,27 @@ export default async function UserPage({ params }: Props) {
   console.log(user);
   console.log(repos);
   return (
-    <div>
-      <div>
-        <h1>{user.name}</h1>
-        <h2>{user.bio}</h2>
-        <Image
-          src={user.avatar_url}
-          alt="GitHub User"
-          width={200}
-          height={200}
-          loading="eager"
-        />
-        <p>{user.followers}</p>
+    <div className="max-w-3xl mx-auto p-4">
+      <div className="">
+        <div className="flex py-4">
+          <Image
+            src={user.avatar_url}
+            alt="GitHub User"
+            width={300}
+            height={300}
+            className=" rounded-full"
+            loading="eager"
+          />
+          <div className="my-auto">
+            <h1 className="px-3 text-2xl font-bold">{user.name}</h1>
+            <h2 className="px-3">{user.bio}</h2>
+            <p className="px-3 mt-2">Followers {user.followers}</p>
+          </div>
+        </div>
       </div>
       {Array.isArray(repos) &&
         repos.map((item) => (
-          <div className="border" key={item.id}>
+          <div className="bg-white border rounded p-4 mb-3" key={item.id}>
             <h2>{item.name}</h2>
             <p>{item.description}</p>
             <p>{item.language}</p>

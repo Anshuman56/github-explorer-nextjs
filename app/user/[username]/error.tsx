@@ -10,12 +10,15 @@ export default function ErrorPage({
   reset: () => void;
 }) {
   return (
-    <div>
+    <div className="max-w-3xl mx-auto p-4">
       <p>{error.message}</p>
 
-      <button onClick={() => reset()}>Try Again</button>
-
-      <Link href="/">Return Home</Link>
+      <button
+        onClick={() => reset()}
+        className="bg-blue-400 px-3 py-1 mt-3 text-white rounded"
+      >
+        Try Again
+      </button>
     </div>
   );
 }

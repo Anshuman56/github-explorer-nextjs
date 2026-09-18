@@ -25,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <nav className="mx-auto">
+        <nav className="mx-auto mt-3 underline">
           <Link href="/">Home</Link>
         </nav>
         {children}
