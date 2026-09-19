@@ -4,7 +4,7 @@ You can enter any github username in the input and when you click the search but
 
 [Live Demo](https://github-explorer-nextjs.vercel.app/)
 
-[React Demo](https://github-explorer-ts-drab.vercel.app/)
+[React Repo](https://github.com/Anshuman56/github-explorer-ts)
 
 ![Screenshot](001.png "Screenshot")
 
